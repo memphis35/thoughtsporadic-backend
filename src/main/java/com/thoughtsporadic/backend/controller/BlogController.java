@@ -10,4 +10,6 @@ public interface BlogController {
     HttpResponse<Collection<BlogPost>> findAllPosts();
 
     HttpResponse<Collection<BlogPost>> findAllPostsByTag(String tag);
+
+    HttpResponse<Collection<String>> findAllTags();
 }

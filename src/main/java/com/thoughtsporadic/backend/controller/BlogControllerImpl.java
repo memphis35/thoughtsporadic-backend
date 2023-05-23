@@ -2,12 +2,10 @@ package com.thoughtsporadic.backend.controller;
 
 import com.thoughtsporadic.backend.model.BlogPost;
 import com.thoughtsporadic.backend.model.FakedBlogPost;
-import io.micronaut.context.annotation.Parameter;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
-import io.micronaut.http.annotation.QueryValue;
-import io.micronaut.http.annotation.RequestAttribute;
+import io.micronaut.http.annotation.PathVariable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,6 +30,7 @@ public class BlogControllerImpl implements BlogController {
                     National support for repealing the death penalty has grown every year. Many more people are being vocal about being against executions fundamentally. Historically, a call for innocence or obvious racial bias has dictated the wave of support.
                     There’s a clearer understanding that racial disparities in the death penalty run throughout the criminal legal system. Visit our YouTube Channel to listen to their conversation.
                     """);
+
     private final BlogPost post2 = new FakedBlogPost(100002L,
             "/var/thoughs/what_feminism_means_today",
             "What feminism means today",
@@ -42,6 +41,7 @@ public class BlogControllerImpl implements BlogController {
                     She laments the division's relative absence of men, minorities and members younger than 30--the last of which is a trend across all APA divisions.
                     "We've had trouble communicating feminism's continuing relevance to young people and people of color," says de las Fuentes, an associate professor at San Antonio-based Our Lady of the Lake University. "Most current Div. 35 members were active in women's rights in the '70s, and they still are."
                     """);
+
     private final BlogPost post3 = new FakedBlogPost(100003L,
             "/var/thoughs/revenge_cheating_what_you_need_to_know",
             "Revenge Cheating: What You Need to Know",
@@ -61,11 +61,16 @@ public class BlogControllerImpl implements BlogController {
     }
 
     @Override
-    @Get(produces = {APPLICATION_JSON})
-    public HttpResponse<Collection<BlogPost>> findAllPostsByTag(@QueryValue String tag) {
+    @Get(value = "/tag/{tag}", produces = {APPLICATION_JSON})
+    public HttpResponse<Collection<BlogPost>> findAllPostsByTag(@PathVariable String tag) {
         final Collection<BlogPost> posts = (tag.equals("feminism"))
                 ? List.of(post2)
                 : List.of(post1, post3);
         return HttpResponse.ok(posts);
+    }
+
+    @Override
+    public HttpResponse<Collection<String>> findAllTags() {
+        return HttpResponse.ok(List.of("feminism", "ethic", "relationships"));
     }
 }
