@@ -14,7 +14,7 @@ import java.util.List;
 
 import static io.micronaut.http.MediaType.APPLICATION_JSON;
 
-@Controller(value = "/posts")
+@Controller
 public class BlogControllerImpl implements BlogController {
 
     private static final Logger log = LoggerFactory.getLogger(BlogControllerImpl.class);
@@ -53,7 +53,7 @@ public class BlogControllerImpl implements BlogController {
                     """);
 
     @Override
-    @Get(produces = {APPLICATION_JSON})
+    @Get(value = "/posts", produces = {APPLICATION_JSON})
     public HttpResponse<Collection<BlogPost>> findAllPosts() {
         final Collection<BlogPost> posts = List.of(post1, post2, post3);
         log.info("Posts are retrieved");
@@ -61,7 +61,7 @@ public class BlogControllerImpl implements BlogController {
     }
 
     @Override
-    @Get(value = "/tag/{tag}", produces = {APPLICATION_JSON})
+    @Get(value = "/posts/tag/{tag}", produces = {APPLICATION_JSON})
     public HttpResponse<Collection<BlogPost>> findAllPostsByTag(@PathVariable String tag) {
         final Collection<BlogPost> posts = (tag.equals("feminism"))
                 ? List.of(post2)
@@ -70,6 +70,7 @@ public class BlogControllerImpl implements BlogController {
     }
 
     @Override
+    @Get(value = "/tags")
     public HttpResponse<Collection<String>> findAllTags() {
         return HttpResponse.ok(List.of("feminism", "ethic", "relationships"));
     }
