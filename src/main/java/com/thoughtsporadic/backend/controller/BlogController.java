@@ -8,4 +8,6 @@ import java.util.Collection;
 public interface BlogController {
 
     HttpResponse<Collection<BlogPost>> findAllPosts();
+
+    HttpResponse<Collection<BlogPost>> findAllPostsByTag(String tag);
 }
