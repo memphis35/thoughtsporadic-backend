@@ -1,9 +1,24 @@
 micronaut:
   application:
-    name: thoughtsporadicBackend
+    name: thoughtsporadic-be
   server:
     cors:
       enabled: true
+      configurations:
+        web:
+          allowedOrigins:
+            - ^http(|s)://(www|blog)\.thoughtsporadic\.com$
+          allowedMethods:
+            - GET
+            - POST
+          exposedHeaders:
+            - Content-Type
+            - Cache-Control
+            - Content-Language
+            - Content-Length
+            - Expires
+            - Last-Modified
+          allowedCredentials: false
 netty:
   default:
     allocator:
