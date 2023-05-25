@@ -19,6 +19,7 @@ micronaut:
             - Expires
             - Last-Modified
           allowedCredentials: false
+      localhost-pass-through: true
 netty:
   default:
     allocator:
