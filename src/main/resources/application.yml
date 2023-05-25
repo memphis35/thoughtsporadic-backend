@@ -8,16 +8,6 @@ micronaut:
         web:
           allowedOrigins:
             - http://blog.thoughtsporadic.com
-          allowedMethods:
-            - GET
-            - POST
-          exposedHeaders:
-            - Content-Type
-            - Cache-Control
-            - Content-Language
-            - Content-Length
-            - Expires
-            - Last-Modified
       localhost-pass-through: true
 netty:
   default:
