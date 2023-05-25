@@ -7,7 +7,7 @@ micronaut:
       configurations:
         web:
           allowedOrigins:
-            - ^http(|s)://(www|blog)\.thoughtsporadic\.com$
+            - http://blog.thoughtsporadic.com
           allowedMethods:
             - GET
             - POST
@@ -18,7 +18,6 @@ micronaut:
             - Content-Length
             - Expires
             - Last-Modified
-          allowedCredentials: false
       localhost-pass-through: true
 netty:
   default:
