@@ -3,7 +3,7 @@ plugins {
     id("io.micronaut.application") version "3.7.9"
 }
 
-version = "0.1"
+version = "1.0"
 group = "com.example"
 
 repositories {
@@ -19,7 +19,7 @@ dependencies {
 }
 
 application {
-    mainClass.set("com.example.Application")
+    mainClass.set("com.thoughtsporadic.backend.Application")
 }
 java {
     sourceCompatibility = JavaVersion.toVersion("17")
